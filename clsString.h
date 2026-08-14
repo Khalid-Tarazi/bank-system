@@ -247,9 +247,9 @@ public:
         // use find() function to get the position of the delimiters  
         while ((pos = S1.find(Delim)) != std::string::npos) {
             sWord = S1.substr(0, pos); // store the word   
-            if (sWord != "") {
+            //if (sWord != "") {
                 vString.push_back(sWord);
-            }
+            //}
             S1.erase(0, pos + Delim.length());  /* erase() until positon and move to next word. */
         }
 
@@ -370,7 +370,7 @@ public:
         return replaceString(_Value, stringToReplace, sReplaceTo);
     }
 
-    static string removenPunctuationFromString(string s) {
+    static string removePunctuations(string s) {
         string s2 = "";
 
         for (short i = 0; i < s.length(); i++) {
@@ -382,7 +382,7 @@ public:
         return s2;
     }
 
-    void removenPunctuationFromString() {
-        _Value = removenPunctuationFromString(_Value);
+    void removePunctuations() {
+        _Value = removePunctuations(_Value);
     }
 };
