@@ -22,12 +22,6 @@ void readClientInfo(clsBankClient& client) {
 
     cout << "\nEnter account balance: ";
     client.accountBalance = clsInputValidate::readFloatNumber();
-
-
-
-
-
-
 }
 
 void updateClient() {
@@ -50,7 +44,22 @@ void updateClient() {
 
     readClientInfo(client1);
 
+    clsBankClient::enSaveResults saveResult;
 
+    saveResult = client1.save();
+
+    switch (saveResult) {
+
+    case clsBankClient::svSucceeded: {
+        cout << "\nAccount updated successfully\n";
+        client1.print();
+        break;
+    }
+    case clsBankClient::svFailedEmptyObject: {
+        cout << "\nError account was not saved because it's empty";
+        break;
+    }
+    }
 
 
 
