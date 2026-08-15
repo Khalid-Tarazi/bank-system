@@ -67,4 +67,3 @@ public:
 		return _FirstName + " " + _LastName;
 	}
 };
-
