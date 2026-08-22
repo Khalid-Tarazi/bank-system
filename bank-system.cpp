@@ -100,16 +100,41 @@ void updateClient() {
         break;
     }
     }
+}
 
+void deleteClient() { // return true or false, and return empty object, and it deletes from file.
+    
+    string accountNumber = "";
 
+    cout << "\nPlease enter account number: ";
+    accountNumber = clsInputValidate::readString();
+    while (!clsBankClient::isClientExist(accountNumber)) {
+        cout << "\nAccount is not found, choose another one: ";
+        accountNumber = clsInputValidate::readString();
+    }
 
+    clsBankClient client1 = clsBankClient::find(accountNumber);
+    client1.print();
 
+    cout << "\nAre you sure you want to delete this client? y/n ";
 
+    char answer = 'n';
+    cin >> answer;
+
+    if (answer == 'y' || answer == 'Y') {
+        if (client1.Delete()) {  // I have to rename to Delete, or else I will get conflict with delete() bulit in function
+            cout << "\nClient deleted successfully\n";
+            client1.print(); // to show the object
+        }
+        else {
+            cout << "\nError client was not deleted\n";
+        }
+    }
 }
 
 int main() {
-     
-    addNewClient();
+    
+    deleteClient();
 
     system("pause>0");
     return 0;

@@ -17,6 +17,7 @@ private:
 	string _AccountNumber;
 	string _PinCode;
 	float _AccountBalance;
+	bool _MarkedForDelete = false;
 
 	//private functions will be used here
 	static clsBankClient _ConvertLineToClientObject(string line, string seperator = "#//#") {
@@ -68,9 +69,13 @@ private:
 		string dataLine;
 
 		if (myFile.is_open()) {
+			
 			for (clsBankClient C : vClients) {
-				dataLine = _ConvertClientObjectToLine(C);
-				myFile << dataLine << endl;
+				if (C.markedForDelete() == false) {
+					//we only write records that are not marked for delete. 
+					dataLine = _ConvertClientObjectToLine(C);
+					myFile << dataLine << endl;
+				}				
 			}
 
 			myFile.close();
@@ -82,7 +87,7 @@ private:
 		vector<clsBankClient> _vClients;
 		_vClients = _LoadClientsDataFromFile();
 
-		for (clsBankClient C : _vClients) {
+		for (clsBankClient& C : _vClients) {
 			if (C.accountNumber() == accountNumber()) {
 				C = *this; // the client we loaded = the updated info (*this)
 				break;
@@ -126,6 +131,10 @@ public:
 	bool isEmpty() {	//to check the mode is empty or not
 
 		return (_Mode == enMode::emptyMode);
+	}
+
+	bool markedForDelete() {
+		return _MarkedForDelete;
 	}
 
 	string accountNumber() { // read only property, no one is allowed to edit it
@@ -258,13 +267,28 @@ public:
 		return (!client1.isEmpty());
 	}
 
+	bool Delete() {
+
+		vector <clsBankClient> _vClients;
+		_vClients = _LoadClientsDataFromFile();
+
+		for (clsBankClient& C : _vClients) {
+			if (C.accountNumber() == _AccountNumber) {
+				C._MarkedForDelete = true;
+				break;
+			}
+		}
+
+		_SaveClientsDataToFile(_vClients);
+
+		*this = _GetEmptyClientObject();
+
+		return true;
+	}
+
 	static clsBankClient getAddNewClientObject(string accountNumber) {
 
 		return clsBankClient(enMode::addNewMode, "", "", "", "", accountNumber, "", 0);
 	}
-
-
-
-
 };
 
