@@ -118,7 +118,7 @@ public:
 
 	static string readString() {
 		string  S1 = "";
-		// Usage of std::ws will extract allthe whitespace character
+		// Usage of std::ws will extract all the whitespace character
 		getline(cin >> ws, S1);
 		return S1;
 	}

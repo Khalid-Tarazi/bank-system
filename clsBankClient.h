@@ -11,7 +11,7 @@ class clsBankClient : public clsPerson {
 
 private:
 
-	enum enMode { emptyMode = 0, updateMode = 1};
+	enum enMode { emptyMode = 0, updateMode = 1, addNewMode = 2};
 	enMode _Mode;
 
 	string _AccountNumber;
@@ -90,6 +90,11 @@ private:
 		}
 
 		_SaveClientsDataToFile(_vClients);
+	}
+
+	void _AddNew() {
+		
+		_AddDataLineToFile(_ConvertClientObjectToLine(*this));
 	}
 
 	void _AddDataLineToFile(string stDataLine) {
@@ -215,7 +220,7 @@ public:
 		return _GetEmptyClientObject();
 	}
 
-	enum enSaveResults { svFailedEmptyObject = 0, svSucceeded = 1};
+	enum enSaveResults { svFailedEmptyObject = 0, svSucceeded = 1, svFailedAccountNumberExists = 2};
 
 	enSaveResults save() {
 
@@ -229,6 +234,20 @@ public:
 			return enSaveResults::svSucceeded;
 			break;
 		}
+
+		case enMode::addNewMode: {
+			//This will add new record to file r database
+			if (clsBankClient::isClientExist(_AccountNumber)) {
+				return enSaveResults::svFailedAccountNumberExists;
+			}
+			else {
+				_AddNew();
+				//We need to set the mode to update after add new
+				_Mode = enMode::updateMode;
+				return enSaveResults::svSucceeded;
+			}
+			break;
+		}
 		}
 	}
 
@@ -239,7 +258,10 @@ public:
 		return (!client1.isEmpty());
 	}
 
+	static clsBankClient getAddNewClientObject(string accountNumber) {
 
+		return clsBankClient(enMode::addNewMode, "", "", "", "", accountNumber, "", 0);
+	}
 
 
 

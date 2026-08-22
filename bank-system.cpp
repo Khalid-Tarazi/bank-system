@@ -24,6 +24,46 @@ void readClientInfo(clsBankClient& client) {
     client.accountBalance = clsInputValidate::readFloatNumber();
 }
 
+void addNewClient() {
+
+    string accountNumber = "";
+
+    cout << "\nPlease enter account number: ";
+    accountNumber = clsInputValidate::readString();
+    while (clsBankClient::isClientExist(accountNumber)) {
+
+        cout << "\nAccount number is already used, choose another one: ";
+        accountNumber = clsInputValidate::readString();
+    }
+
+    clsBankClient newClient = clsBankClient::getAddNewClientObject(accountNumber);
+        
+    readClientInfo(newClient);
+
+    clsBankClient::enSaveResults saveResult;
+
+    saveResult = newClient.save(); // added new mode
+
+    switch (saveResult) {
+
+    case clsBankClient::enSaveResults::svSucceeded: {
+        cout << "\nAccount added successfully\n";
+        newClient.print();
+        break;
+    }
+
+    case clsBankClient::enSaveResults::svFailedEmptyObject: {
+        cout << "\nError: account was not saved because the object is empty.";
+        break;
+    }
+
+    case clsBankClient::enSaveResults::svFailedAccountNumberExists: {
+        cout << "\nError account was not saved because account number is used!\n";
+        break;
+    }
+    }
+}
+
 void updateClient() {
 
     string accountNumber = "";
@@ -69,7 +109,7 @@ void updateClient() {
 
 int main() {
      
-    updateClient();
+    addNewClient();
 
     system("pause>0");
     return 0;
