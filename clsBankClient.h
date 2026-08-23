@@ -295,5 +295,18 @@ public:
 
 		return _LoadClientsDataFromFile();
 	}
+
+	static double getTotalBalances() { //static - it involves all clients, you will not edit or update
+
+		vector<clsBankClient> vClients = clsBankClient::getClientsList();
+
+		double totalBalances = 0;
+
+		for (clsBankClient client: vClients) {
+			totalBalances += client.accountBalance;
+		}
+
+		return totalBalances;
+	}
 };
 
