@@ -28,16 +28,6 @@ void readClientInfo(clsBankClient& client) {
     client.accountBalance = clsInputValidate::readFloatNumber();
 }
 
-void printClientRecordLine(clsBankClient client) {
-
-    cout << "| " << setw(15) << left << client.accountNumber();
-    cout << "| " << setw(20) << left << client.fullName();
-    cout << "| " << setw(12) << left << client.phone;
-    cout << "| " << setw(20) << left << client.email;
-    cout << "| " << setw(10) << left << client.pinCode;
-    cout << "| " << setw(12) << left << client.accountBalance;
-}
-
 void printClientRecordBalanceLine(clsBankClient client) {
 
     cout << "| " << setw(15) << left << client.accountNumber();
@@ -151,35 +141,6 @@ void deleteClient() { // return true or false, and return empty object, and it d
             cout << "\nError client was not deleted\n";
         }
     }
-}
-
-void showClientsList() {
-
-    vector<clsBankClient> vClients = clsBankClient::getClientsList();
-
-    cout << "\n\t\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
-    cout << "\n_______________________________________________________";
-    cout << "_________________________________________\n" << endl;
-
-    cout << "| " << left << setw(15) << "Account Number";
-    cout << "| " << left << setw(20) << "Client Name";
-    cout << "| " << left << setw(12) << "Phone";
-    cout << "| " << left << setw(20) << "Email";
-    cout << "| " << left << setw(10) << "Pin Code";
-    cout << "| " << left << setw(12) << "Balance";
-    cout << "\n_______________________________________________________";
-    cout << "_________________________________________\n" << endl;
-
-    if (vClients.size() == 0)
-        cout << "\t\t\t\tNo Clients Available In the System!";
-    else 
-        for (clsBankClient client : vClients) {
-            printClientRecordLine(client);
-            cout << endl;
-        }
-
-    cout << "\n_______________________________________________________";
-    cout << "_________________________________________\n" << endl;
 }
 
 void showTotalBalances() {

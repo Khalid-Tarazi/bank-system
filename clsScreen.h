@@ -5,6 +5,7 @@ using namespace std;
 
 class clsScreen {
 protected:
+
     static void _DrawScreenHeader(string title, string subTitle = "") {
         cout << "\t\t\t\t\t______________________________________";
         cout << "\n\n\t\t\t\t\t  " << title;
