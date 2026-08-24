@@ -1,6 +1,4 @@
-# bank-system
-
-#  C++ Bank System
+# Bank System
 
 A comprehensive console-based banking system built in C++ that demonstrates Object-Oriented Programming principles, file handling, and data validation. This project is part of a learning journey to build a fully functional banking application with a user-friendly interface.
 
