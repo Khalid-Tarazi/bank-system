@@ -14,44 +14,6 @@ using namespace std;
 //    cout << "| " << setw(12) << left << client.accountBalance;
 //}
 
-//void updateClient() {
-//
-//    string accountNumber = "";
-//
-//    cout << "\nPlease enter account number: ";
-//    accountNumber = clsInputValidate::readString();
-//
-//    while (!clsBankClient::isClientExist(accountNumber)) {
-//        cout << "\nPlease enter account number: ";
-//        accountNumber = clsInputValidate::readString();
-//    }
-//
-//    clsBankClient client1 = clsBankClient::find(accountNumber);
-//    client1.print();
-//
-//    cout << "\n\nUpdate client info:";
-//    cout << "\n_____________________\n";
-//
-//    readClientInfo(client1);
-//
-//    clsBankClient::enSaveResults saveResult;
-//
-//    saveResult = client1.save();
-//
-//    switch (saveResult) {
-//
-//    case clsBankClient::svSucceeded: {
-//        cout << "\nAccount updated successfully\n";
-//        client1.print();
-//        break;
-//    }
-//    case clsBankClient::svFailedEmptyObject: {
-//        cout << "\nError account was not saved because it's empty";
-//        break;
-//    }
-//    }
-//}
-
 //void showTotalBalances() {
 //
 //    vector<clsBankClient> vClients = clsBankClient::getClientsList();
