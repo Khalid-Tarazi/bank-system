@@ -9,7 +9,7 @@ class clsClientListScreen: protected clsScreen {
 
 private:
 
-    static void printClientRecordLine(clsBankClient client) {
+    static void _PrintClientRecordLine(clsBankClient client) {
 
         cout << setw(8) << left << "" << "| " << setw(15) << left << client.accountNumber();
         cout << "| " << setw(20) << left << client.fullName();
@@ -46,7 +46,7 @@ public:
             cout << "\t\t\t\tNo Clients Available In the System!";
         else
             for (clsBankClient client : vClients) {
-                printClientRecordLine(client);
+                _PrintClientRecordLine(client);
                 cout << endl;
             }
 
