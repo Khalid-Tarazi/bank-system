@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include "clsScreen.h"
 #include "clsInputValidate.h"
-#include <iomanip>
+#include "clsDepositScreen.h"
+#include "clsWithdrawScreen.h"
 
 using namespace std;
 
@@ -22,11 +24,13 @@ private:
     }
 
     static void _ShowDepositScreen() {
-        cout << "\n Deposit Screen will be here.\n";
+        //cout << "\n Deposit Screen will be here.\n";
+        clsDepositScreen::showDepositScreen();
     }
 
     static void _ShowWithdrawScreen() {
-        cout << "\n Withdraw Screen will be here.\n";
+        //cout << "\n Withdraw Screen will be here.\n";
+        clsWithdrawScreen::showWithdrawScreen();
     }
 
     static void _ShowTotalBalancesScreen() {

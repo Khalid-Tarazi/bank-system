@@ -296,17 +296,32 @@ public:
 		return _LoadClientsDataFromFile();
 	}
 
+	void deposit(double amount) {
+		_AccountBalance += amount;
+		save();
+	}
+
+	bool withdraw(double amount) {
+		if (amount > _AccountBalance) {
+			return false;
+		}
+		else {
+			_AccountBalance -= amount;
+			save();
+			return true;
+		}
+	}
+
 	static double getTotalBalances() { //static - it involves all clients, you will not edit or update
 
 		vector<clsBankClient> vClients = clsBankClient::getClientsList();
 
 		double totalBalances = 0;
 
-		for (clsBankClient client: vClients) {
+		for (clsBankClient client : vClients) {
 			totalBalances += client.accountBalance;
 		}
 
 		return totalBalances;
 	}
 };
-
