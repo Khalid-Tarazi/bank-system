@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsClientListScreen.h"
@@ -7,7 +8,7 @@
 #include "clsDeleteClientScreen.h"
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
-#include <iomanip>
+#include "clsTransactionsScreen.h"
 
 using namespace std;
 
@@ -61,8 +62,8 @@ private:
 	}
 
 	static void _ShowTransactionsMenu() {
-		cout << "\nTransactions Menu Will be here...\n";
-
+		//cout << "\nTransactions Menu Will be here...\n";
+		clsTransactionsScreen::showTransactionsMenu();
 	}
 
 	static void _ShowManageUsersMenu() {
@@ -117,12 +118,14 @@ private:
 		case enMainMenuOptions::eShowTransactionsMenu: {
 			system("cls");
 			_ShowTransactionsMenu();
+			_GoBackToMainMenu();
 			break;
 		}
 
 		case enMainMenuOptions::eManageUsers: {
 			system("cls");
 			_ShowManageUsersMenu();
+			_GoBackToMainMenu();
 			break;
 		}
 
