@@ -6,9 +6,8 @@ A comprehensive console-based banking system built in C++ that demonstrates Obje
 - [Overview](#overview)
 - [Features](#features)
 - [Class Structure](#class-structure)
-- [Project Architecture](#project-architecture)
-- [Key Functionalities](#key-functionalities)
 - [Technical Details](#technical-details)
+- [Key Functionalities](#key-functionalities)
 
 ## Overview
 
@@ -92,36 +91,6 @@ The system utilizes file-based storage (`Clients.txt`) to persist client data an
 | `clsDate` | Comprehensive date operations | Date manipulation, calculations, formatting |
 | `clsString` | String manipulation utilities | Split, join, case conversion, trim, replace |
 | `clsUtil` | General utility functions | Random generation, encryption, number to text |
-
-## Project Architecture
-
-┌─────────────────────────────────────────────────────────┐
-│ Main Program │
-│ (bank-system.cpp) │
-└─────────────────────┬───────────────────────────────────┘
-│
-┌─────────────────────▼───────────────────────────────────┐
-│ clsMainScreen │
-│ (Main Menu Controller) │
-└─────────────────────┬───────────────────────────────────┘
-│
-┌─────────────┼─────────────────┐
-│ │ │
-┌───────▼──────┐ ┌────▼──────┐ ┌───────▼──────┐
-│ Client │ │Transaction│ │ Manage │
-│ Screens │ │ Screens │ │ Users │
-│ │ │ │ │ (Future) │
-└───────┬──────┘ └─────┬─────┘ └──────────────┘
-│ │
-┌───────▼──────────────▼──────────────────────────────┐
-│ clsBankClient │
-│ (Business Logic Layer) │
-└─────────────────────┬───────────────────────────────┘
-│
-┌─────────────────────▼───────────────────────────────┐
-│ Data Storage │
-│ Clients.txt │
-└──────────────────────────────────────────────────────┘
 
 ## Technical Details
 Language and Tools
