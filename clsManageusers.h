@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include "clsScreen.h"
 #include "clsInputValidate.h"
-#include <iomanip>
+#include "clsListUsersScreen.h"
 
 using namespace std;
 
@@ -29,7 +30,8 @@ private:
 	}
 
     static void _ShowListUsersScreen() {
-        cout << "\nList Users Screen Will Be Here.\n";
+        //cout << "\nList Users Screen Will Be Here.\n";
+        clsListUsersScreen::showUsersList();
     }
 
     static void _ShowAddNewUserScreen() {

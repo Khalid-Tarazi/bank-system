@@ -276,7 +276,7 @@ public:
 		return clsUser(enMode::addNewMode, "", "", "", "", userName, "", 0);
 	}
 
-	static vector<clsUser> getUserList() {
+	static vector<clsUser> getUsersList() {
 
 		return _LoadUsersDataFromFile();
 	}
