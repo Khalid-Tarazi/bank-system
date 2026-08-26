@@ -33,6 +33,7 @@ private:
 			loginFailed = currentUser.isEmpty();
 
 		} while (loginFailed);
+
 		clsMainScreen::showMainMenu();
 	}
 

@@ -74,7 +74,7 @@
     <ClInclude Include="clsTotalBalancesScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsManageUserScreen.h">
+    <ClInclude Include="clsManageUsersScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clsUser.h">

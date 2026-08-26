@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include <iostream>
 #include "clsScreen.h"
 #include "clsPerson.h"
@@ -29,6 +28,10 @@ public:
 
 	static void showDeleteClientScreen() { // return true or false, and return empty object, and it deletes from file.
 		
+        if (!checkAccessRights(clsUser::enPermissions::pAddNewClient)) {
+            return;// this will exit the function and it will not continue
+        }
+
         _DrawScreenHeader("\tDelete Client Screen");
 
         string accountNumber = "";

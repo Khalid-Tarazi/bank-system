@@ -49,6 +49,10 @@ public:
 
     static void ShowUpdateClientScreen() {
 
+        if (!checkAccessRights(clsUser::enPermissions::pAddNewClient)) {
+            return;// this will exit the function and it will not continue
+        }
+
         _DrawScreenHeader("\tUpdate Client Screen");
 
         string accountNumber = "";

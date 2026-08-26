@@ -8,7 +8,7 @@
 #include "clsUpdateClientScreen.h"
 #include "clsFindClientScreen.h"
 #include "clsTransactionsScreen.h"
-#include "clsManageUserScreen.h"
+#include "clsManageUsersScreen.h"
 #include "clsLoginScreen.h"
 #include "Global.h"
 
@@ -70,7 +70,7 @@ private:
 
 	static void _ShowManageUsersMenu() {
 		//cout << "\nUsers Menu Will be here...\n";
-		clsManageUserScreen::showManageUsersMenu();
+		clsManageUsersScreen::showManageUsersMenu();
 	}
 
 	/*static void _ShowEndScreen() {

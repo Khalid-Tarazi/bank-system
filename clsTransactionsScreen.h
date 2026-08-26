@@ -81,6 +81,10 @@ public:
 
 	static void showTransactionsMenu() {
 
+        if (!checkAccessRights(clsUser::enPermissions::pAddNewClient)) {
+            return;// this will exit the function and it will not continue
+        }
+
 		system("cls");
 		_DrawScreenHeader("\t Transactions Screen");
 

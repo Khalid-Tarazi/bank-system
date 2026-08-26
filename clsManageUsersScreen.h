@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class clsManageUserScreen: protected clsScreen {
+class clsManageUsersScreen: protected clsScreen {
 
 private:
 
@@ -105,6 +105,10 @@ private:
 public: 
 
     static void showManageUsersMenu() {
+
+        if (!checkAccessRights(clsUser::enPermissions::pAddNewClient)) {
+            return;// this will exit the function and it will not continue
+        }
 
         system("cls");
         _DrawScreenHeader("\t Manage Users Screen");

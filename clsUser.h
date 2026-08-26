@@ -285,4 +285,16 @@ public:
 
 		return _LoadUsersDataFromFile();
 	}
+
+	bool checkAccessPermission(enPermissions permission) {
+
+		if (this->permissions == enPermissions::eAll) return true;
+
+		if ((permission & this->permissions) == permission) { //bitwise - bit &
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 };

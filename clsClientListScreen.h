@@ -23,6 +23,10 @@ public:
 
 	static void showClientsList() { //same function I used before, but with minimum editing
 
+        if (!checkAccessRights(clsUser::enPermissions::pAddNewClient)) {
+            return;// this will exit the function and it will not continue
+        }
+
         vector<clsBankClient> vClients = clsBankClient::getClientsList();
 
         string title = "\tClient List Screen";
