@@ -5,43 +5,43 @@
 #include "clsUser.h"
 #include <iomanip>
 #include "clsMainScreen.h"
-#include "global.h"
+#include "Global.h"
 
-class clsLoginScreen: protected clsScreen {
+class clsLoginScreen : protected clsScreen {
 
 private:
 
-    static void _Login() {
+	static void _Login() {
 
-        bool loginFailed = false;
+		bool loginFailed = false;
 
-        string userName, password;
+		string userName, password;
 
-        do {
-            
-            if (loginFailed) {
-                cout << "\nInvlaid Username/Password!\n\n";
-            }
+		do {
 
-            cout << "Enter Username? ";
-            cin >> userName;
+			if (loginFailed) {
+				cout << "\nInvlaid Username/Password!\n\n";
+			}
 
-            cout << "Enter Password? ";
-            cin >> password;
+			cout << "Enter Username? ";
+			cin >> userName;
 
-            currentUser = clsUser::find(userName, password); // currentUser is defined globally in global.h on the whole system, not here
-            loginFailed = currentUser.isEmpty();
+			cout << "Enter Password? ";
+			cin >> password;
 
-        } while (loginFailed);
-        clsMainScreen::showMainMenu();
-    }
+			currentUser = clsUser::find(userName, password); // currentUser is defined globally in Global.h on the whole system, not here
+			loginFailed = currentUser.isEmpty();
+
+		} while (loginFailed);
+		clsMainScreen::showMainMenu();
+	}
 
 public:
 
-    static void showLoginScreen() {
-        system("cls");
-        _DrawScreenHeader("\t  Login Screen");
-        _Login();
-    }
+	static void showLoginScreen() {
+		system("cls");
+		_DrawScreenHeader("\t  Login Screen");
+		_Login();
+	}
 };
 

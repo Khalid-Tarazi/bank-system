@@ -4,10 +4,10 @@
 using namespace std;
 
 int main() {
-    
-    //clsMainScreen::showMainMenu();
-    clsLoginScreen::showLoginScreen();
 
-    system("pause>0");
-    return 0;
+	//clsMainScreen::showMainMenu();
+	clsLoginScreen::showLoginScreen();
+
+	system("pause>0");
+	return 0;
 }

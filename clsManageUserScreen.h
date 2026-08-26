@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class clsManageUsers: protected clsScreen {
+class clsManageUserScreen: protected clsScreen {
 
 private:
 
