@@ -2,6 +2,7 @@
 #include <iostream>
 #include "clsUser.h"
 #include "Global.h"
+#include "clsDate.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class clsScreen {
 protected:
 
     static void _DrawScreenHeader(string title, string subTitle = "") {
+
         cout << "\t\t\t\t\t______________________________________";
         cout << "\n\n\t\t\t\t\t  " << title;
         if (subTitle != "")
@@ -16,6 +18,8 @@ protected:
             cout << "\n\t\t\t\t\t  " << subTitle;
         }
         cout << "\n\t\t\t\t\t______________________________________\n\n";
+        cout << "\n\t\t\t\t\tUser: " << currentUser.userName << "\n";
+        cout << "\t\t\t\t\tDate: " << clsDate::dateToString(clsDate()) << "\n\n";
     }
 
     static bool checkAccessRights(clsUser::enPermissions permission) {
