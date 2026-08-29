@@ -324,4 +324,15 @@ public:
 
 		return totalBalances;
 	}
+
+	bool transfer(float amount, clsBankClient& destinationClient) {
+		
+		if (amount > accountBalance) {
+			return false;
+		}
+
+		withdraw(amount);
+		destinationClient.deposit(amount);
+		return true;
+	}
 };
