@@ -43,7 +43,9 @@ private:
 
 		} while (loginFailed);
 
+		currentUser.registerLogIn();
 		clsMainScreen::showMainMenu();
+		return true;
 	}
 
 public:

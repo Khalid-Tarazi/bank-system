@@ -5,6 +5,7 @@
 #include "clsString.h"
 #include <vector>
 #include <fstream>
+#include "clsDate.h"
 
 using namespace std;
 
@@ -20,6 +21,15 @@ private:
 	int _Permissions;
 
 	bool _MarkedForDelete = false;
+
+	string _PrepareLogInRecord(string seperator = "#//#") {
+		string loginRecord = "";
+		loginRecord += clsDate::getSystemDateTimeString() + seperator;
+		loginRecord += userName + seperator;
+		loginRecord += password + seperator;
+		loginRecord += to_string(permissions);
+		return loginRecord;
+	}
 
 	static clsUser _ConvertLineToUserObject(string line, string seperator = "#//#") {
 
@@ -295,6 +305,20 @@ public:
 		}
 		else {
 			return false;
+		}
+	}
+
+	void registerLogIn() {
+
+		string stDataLine = _PrepareLogInRecord();
+
+		fstream MyFile;
+		MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+		if (MyFile.is_open()) {
+
+			MyFile << stDataLine << endl;
+			MyFile.close();
 		}
 	}
 };
