@@ -20,7 +20,7 @@ private:
 
     static string _ReadAccountNumber() {
         string accountNumber;
-        cout << "\nPlease Enter Account Number to Transfer From: ";
+        cout << "\nPlease Enter Account Number to Transfer From/To: ";
         accountNumber = clsInputValidate::readString();
         
         while (!clsBankClient::isClientExist(accountNumber)) {
@@ -62,7 +62,7 @@ public:
         cin >> answer;
 
         if (answer == 'Y' || answer == 'y') {
-            if (sourceClient.transfer(amount, destinationClient)) {
+            if (sourceClient.transfer(amount, destinationClient, currentUser.userName)) {
                 cout << "\nTransfer done successfully\n";
             }
             else {
