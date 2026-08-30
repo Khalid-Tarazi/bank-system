@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include "clsDate.h"
+#include "clsUtil.h"
 
 using namespace std;
 
@@ -41,7 +42,8 @@ private:
 		string loginRecord = "";
 		loginRecord += clsDate::getSystemDateTimeString() + seperator;
 		loginRecord += userName + seperator;
-		loginRecord += password + seperator;
+		//here we encrypt and store the encrypted Password not the real one.
+		loginRecord += clsUtil::encryptText(password) + seperator;
 		loginRecord += to_string(permissions);
 		return loginRecord;
 	}
@@ -52,7 +54,7 @@ private:
 		vUserData = clsString::split(line, seperator);
 
 		return clsUser(enMode::updateMode, vUserData[0], vUserData[1], vUserData[2],
-			vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+			vUserData[3], vUserData[4], clsUtil::decryptText(vUserData[5]), stoi(vUserData[6]));
 	}
 
 	static string _ConvertUserObjectToLine(clsUser user, string seperator = "#//#") {
@@ -63,7 +65,8 @@ private:
 		userRecord += user.email + seperator;
 		userRecord += user.phone + seperator;
 		userRecord += user.userName + seperator;
-		userRecord += user.password + seperator;
+		//here we encrypt and store the encrypted Password not the real one.
+		userRecord += clsUtil::encryptText(user.password) + seperator;
 		userRecord += to_string(user.permissions);
 
 		return userRecord;

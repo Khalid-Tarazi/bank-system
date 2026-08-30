@@ -19,7 +19,6 @@ private:
         cout << "| " << setw(10) << left << loginRegisterRecord.permissions;
     }
 
-
 public:
 
 	static void ShowLoginRegisterScreen() {
