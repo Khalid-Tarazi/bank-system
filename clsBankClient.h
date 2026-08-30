@@ -117,6 +117,23 @@ private:
 		return clsBankClient(enMode::emptyMode, "", "", "", "", "", "", 0);
 	}
 
+	struct stTransferLogRecord;
+
+	static stTransferLogRecord _ConvertTransferLogLineToRecord(string line, string seperator = "#//#") {
+		stTransferLogRecord transferLogRecord;
+
+		vector <string> vTrnsferLogRecordLine = clsString::split(line, seperator);
+		transferLogRecord.dateTime = vTrnsferLogRecordLine[0];
+		transferLogRecord.sourceAccountNumber = vTrnsferLogRecordLine[1];
+		transferLogRecord.destinationAccountNumber = vTrnsferLogRecordLine[2];
+		transferLogRecord.amount = stod(vTrnsferLogRecordLine[3]);
+		transferLogRecord.srcBalanceAfter = stod(vTrnsferLogRecordLine[4]);
+		transferLogRecord.destBalanceAfter = stod(vTrnsferLogRecordLine[5]);
+		transferLogRecord.userName = vTrnsferLogRecordLine[6];
+
+		return transferLogRecord;
+	}
+
 	string _PrepareTransferLogRecord(float amount, clsBankClient destinationClient,
 		string userName, string seperator = "#//#") {
 		string transferLogRecord = "";
@@ -145,6 +162,16 @@ private:
 	}
 
 public:
+
+	struct stTransferLogRecord {
+		string dateTime;
+		string sourceAccountNumber;
+		string destinationAccountNumber;
+		float amount;
+		float srcBalanceAfter;
+		float destBalanceAfter;
+		string userName;
+	};
 
 	clsBankClient(enMode mode, string firstName, string lastName, string email, string phone, 
 		string accountNumber, string pinCode, float accountBalance) : clsPerson(firstName, lastName, email, phone) {
@@ -363,4 +390,27 @@ public:
 		_RegisterTransferLog(amount, destinationClient, userName);
 		return true;
 	}
+
+	static vector<stTransferLogRecord> getTransferLogList() {
+
+		vector<stTransferLogRecord> vTransferLogRecord;
+
+		fstream myFile;
+		myFile.open(("TransferLog.txt"), ios::in); // read mode
+
+		if (myFile.is_open()) {
+			string line;
+
+			stTransferLogRecord transferRecord;
+
+			while (getline(myFile, line)) {
+				transferRecord = _ConvertTransferLogLineToRecord(line);
+				vTransferLogRecord.push_back(transferRecord);
+			}
+
+			myFile.close();
+		}
+		return vTransferLogRecord;
+	}
+
 };

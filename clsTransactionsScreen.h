@@ -7,6 +7,7 @@
 #include "clsWithdrawScreen.h"
 #include "clsTotalBalancesScreen.h"
 #include "clsTransferScreen.h"
+#include "clsTransferLogScreen.h"
 
 using namespace std;
 
@@ -16,12 +17,12 @@ private:
 
     enum enTransactionsMenuOptions {
         eDeposit = 1, eWithdraw = 2,
-        eShowTotalBalance = 3, eTransfer = 4, eShowMainMenu = 5
+        eShowTotalBalance = 3, eTransfer = 4, eTransferLogScreen = 5, eShowMainMenu = 6
     };
     
     static short readTransactionsMenuOption() {
-        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 5]? ";
-        short Choice = clsInputValidate::readShortNumberBetween(1, 5, "Enter Number between 1 to 5? ");
+        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
+        short Choice = clsInputValidate::readShortNumberBetween(1, 6, "Enter Number between 1 to 6? ");
         return Choice;
     }
 
@@ -43,6 +44,11 @@ private:
     static void _ShowTransferScreen() {
         
         clsTransferScreen::showTransferScreen();
+    }
+
+    static void _ShowTransferLogScreen() {
+
+        clsTransferLogScreen::showTransferLogScreen();
     }
 
     static void _GoBackToTransactionsMenu() {
@@ -82,6 +88,13 @@ private:
             _GoBackToTransactionsMenu();
             break;
         }
+
+        case enTransactionsMenuOptions:: eTransferLogScreen: {
+            system("cls");
+            _ShowTransferLogScreen();
+            _GoBackToTransactionsMenu();
+            break;
+        }
         
         case enTransactionsMenuOptions::eShowMainMenu: {
             //do nothing here the main screen will handle it :-) ;
@@ -106,8 +119,9 @@ public:
         cout << setw(37) << left << "" << "\t[1] Deposit.\n";
         cout << setw(37) << left << "" << "\t[2] Withdraw.\n";
         cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
-        cout << setw(37) << left << "" << "\t[4] Transactions.\n";
-        cout << setw(37) << left << "" << "\t[5] Main Menu.\n";
+        cout << setw(37) << left << "" << "\t[4] Transfer.\n";
+        cout << setw(37) << left << "" << "\t[5] Transfer Log.\n";
+        cout << setw(37) << left << "" << "\t[6] Main Menu.\n";
         cout << setw(37) << left << "" << "===========================================\n";
 
         _PerformTransactionsMenuOption((enTransactionsMenuOptions)readTransactionsMenuOption());

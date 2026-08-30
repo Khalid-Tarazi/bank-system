@@ -23,7 +23,7 @@ private:
 			if (loginFailed) {
 
 				failedLoginCount++;
-				cout << "\nInvlaid Username/Password!\n\n";
+				cout << "\nInvalid Username/Password!\n\n";
 				cout << "\nYou have " << (3 - failedLoginCount) << " trial(s) to login.\n\n";
 			}
 
