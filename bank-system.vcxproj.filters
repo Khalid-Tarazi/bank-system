@@ -18,9 +18,6 @@
     <ClCompile Include="bank-system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clsDeleteClientScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsPerson.h">
@@ -111,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InterfaceCommunication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsCurrency.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
