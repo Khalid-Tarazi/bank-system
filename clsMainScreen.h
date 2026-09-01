@@ -12,6 +12,7 @@
 #include "clsLoginScreen.h"
 #include "Global.h"
 #include "clsLoginRegisterScreen.h"
+#include "clsCurrencyExchangeMainScreen.h"
 
 using namespace std;
 
@@ -22,13 +23,13 @@ private:
 	enum enMainMenuOptions { 
 		eListClients = 1, eAddNewClient = 2, eDeleteClient = 3,
 		eUpdateClient = 4, eFindClient = 5, eShowTransactionsMenu = 6,
-		eManageUsers = 7, eLoginRegister = 8, eExit = 9
+		eManageUsers = 7, eLoginRegister = 8, eCurrencyExchange = 9, eExit = 10
 	};
 
 	static short _ReadMainMenuOption() {
 
-		cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 9]? ";
-		short choice = clsInputValidate::readShortNumberBetween(1, 9, "Enter Number between 1 to 9? ");
+		cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 10]? ";
+		short choice = clsInputValidate::readShortNumberBetween(1, 10, "Enter Number between 1 to 10? ");
 		return choice;
 	}
 
@@ -81,6 +82,10 @@ private:
 
 	static void _ShowLoginRegisterScreen() {
 		clsLoginRegisterScreen::ShowLoginRegisterScreen();
+	}
+
+	static void _ShowCurrencyExchangeMainScreen() {
+		clsCurrencyExchangeMainScreen::showCurrenciesMenu();
 	}
 
 	static void _Logout() {
@@ -148,6 +153,13 @@ private:
 			break;
 		}
 
+		case enMainMenuOptions::eCurrencyExchange: {
+			system("cls");
+			_ShowCurrencyExchangeMainScreen();
+			_GoBackToMainMenu();
+			break;
+		}
+
 		case enMainMenuOptions::eExit: {
 			system("cls");
 			_Logout();
@@ -174,7 +186,8 @@ public:
 		cout << setw(37) << left << "" << "\t[6] Transactions.\n";
 		cout << setw(37) << left << "" << "\t[7] Manage Users.\n";
 		cout << setw(37) << left << "" << "\t[8] Login Register.\n";
-		cout << setw(37) << left << "" << "\t[9] Logout.\n";
+		cout << setw(37) << left << "" << "\t[9] Currency Exchange.\n";
+		cout << setw(37) << left << "" << "\t[10] Logout.\n";
 		cout << setw(37) << left << "" << "===========================================\n";
 
 		_PerformMainMenuOptions((enMainMenuOptions)_ReadMainMenuOption());
