@@ -178,12 +178,28 @@ public:
 		 return _GetEmptyCurrencyObject();
 	 }
 
+	 static vector <clsCurrency> getCurrenciesList() {
+		 return _LoadCurrencysDataFromFile();
+	 }
+		
 	 static bool isCurrencyExist(string currencyCode) {
 		 clsCurrency C1 = clsCurrency::findByCode(currencyCode);
 		 return (!C1.isEmpty());
 	 }
 
-	 static vector <clsCurrency> getCurrenciesList() {
-		 return _LoadCurrencysDataFromFile();
+	 float convertToUSD(float amount) {
+
+		 return (float)(amount / rate());
+	 }
+
+	 float convertToOtherCurrency(float amount, clsCurrency currency2) {
+
+		 float amountInUSD = convertToUSD(amount);
+
+		 if (currency2.currencyCode() == "USD") {
+			 return amountInUSD;
+		 }
+
+		 return (float)(amountInUSD * currency2.rate());
 	 }
 };
