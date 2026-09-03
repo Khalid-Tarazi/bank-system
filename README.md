@@ -106,8 +106,8 @@ These classes handle all user interaction and inherit from the `clsScreen` base 
 - (Optional) Visual Studio for the included solution file.
 
 ### Installation & Setup
-    **Clone the repository:**
+**Clone the repository:**
     ```bash
     git clone https://github.com/Khalid-Tarazi/bank-system.git
 
-    **cd bank-system**
+**cd bank-system**
