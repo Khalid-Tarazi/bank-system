@@ -1,122 +1,113 @@
 # Bank System
 
-A comprehensive console-based banking system built in C++ that demonstrates Object-Oriented Programming principles, file handling, and data validation. This project is part of a learning journey to build a fully functional banking application with a user-friendly interface.
+A comprehensive, console-based banking system built in C++ that demonstrates Object-Oriented Programming principles, advanced file handling, and robust data validation. This project showcases a fully functional banking application with a user-friendly, menu-driven interface.
+
+[![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey.svg)]()
 
 ## Table of Contents
+
 - [Overview](#overview)
-- [Features](#features)
-- [Class Structure](#class-structure)
+- [Key Features](#key-features)
+    - [Client Management](#client-management)
+    - [Transaction Operations](#transaction-operations)
+    - [Currency Exchange](#currency-exchange)
+    - [User & Login Management](#user--login-management)
+- [Class Architecture](#class-architecture)
+    - [Core Domain Classes](#core-domain-classes)
+    - [Screen (UI) Classes](#screen-ui-classes)
+    - [Utility Classes](#utility-classes)
 - [Technical Details](#technical-details)
-- [Key Functionalities](#key-functionalities)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation & Setup](#installation--setup)
+    - [Running the Application](#running-the-application)
+    - [Default Login](#default-login)
+- [Project Structure](#project-structure)
+- [Screenshots](#screenshots)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Overview
 
-This C++ Bank Management System is a console-based application that provides a complete interface for managing bank clients. It allows users to perform CRUD operations (Create, Read, Update, Delete), handle transactions, and manage client accounts through a structured menu-driven interface.
+This C++ Bank Management System is a console-based application providing a complete interface for managing bank clients, users, and financial transactions. It allows users to perform CRUD operations, handle deposits/withdrawals, manage currencies, and track user logins, all through a structured menu system.
 
-The system utilizes file-based storage (`Clients.txt`) to persist client data and employs a modular class-based architecture for clean code organization.
+The system utilizes file-based storage (`Clients.txt`, `Users.txt`, `Currencies.txt`, `TransferLog.txt`, `LoginRegister.txt`) to persist data and employs a modular, class-based architecture for clean code organization and maintainability.
 
-## Features
+## Key Features
 
-### Core Banking Operations
-- **Client Management**
-  - Add new clients with unique account numbers
-  - View complete client list
-  - Find clients by account number
-  - Update client information
-  - Delete client accounts (soft delete)
-  - Display client details in formatted cards
+### Client Management
+- **Add New Clients** with unique, auto-generated account numbers.
+- **View Complete Client List** in a formatted table.
+- **Find Clients** by account number.
+- **Update Client Information** (name, phone, email, etc.).
+- **Delete Client Accounts** (soft delete).
 
-- **Transaction Operations**
-  - Deposit funds to client accounts
-  - Withdraw funds with balance validation
-  - View total balances across all accounts
-  - Show balance summary in numeric and word formats
+### Transaction Operations
+- **Deposit** funds to client accounts.
+- **Withdraw** funds with real-time balance validation.
+- **Transfer** funds between clients with logging.
+- **View Total Balances** across all accounts, displayed in numeric and word formats.
 
-### User Experience
-- **Main Menu** with 8 options:
-  1. Show Clients List
-  2. Add New Client
-  3. Delete Client
-  4. Update Client Info
-  5. Find Client
-  6. Transactions Menu
-  7. Manage Users (coming soon)
-  8. Logout
+### Currency Exchange
+- **View Currencies List** with real-time rates.
+- **Find Currency** by code or name.
+- **Update Currency Rates** (admin functionality).
+- **Currency Calculator** to convert between different currencies.
 
-- **Transaction Sub-menu** with 4 options:
-  1. Deposit
-  2. Withdraw
-  3. Total Balances
-  4. Main Menu
+### User & Login Management
+- **Manage System Users** (Admin & Normal User roles).
+- **Add, Find, Update, and Delete Users**.
+- **Track Login History** with timestamps in `LoginRegister.txt`.
+- **Secure Password Encryption** using a custom utility.
 
-- **Input Validation**
-  - Data type validation (numbers, strings, etc.)
-  - Range checking for numeric inputs
-  - Duplicate account number prevention
-  - Client existence verification before operations
+## Class Architecture
 
-- **Formatted Display**
-  - Clean table layouts for client lists
-  - Organized client information cards
-  - Proper alignment using stream manipulators
-  - Menu headers with visual separators
+The project is structured using a clean, OOP-centric design. Here are the main class categories:
 
-## Class Structure
-
-### Core Classes
-
+### Core Domain Classes
 | Class | Description | Key Features |
-|-------|-------------|--------------|
-| `clsBankClient` | Main client data model and file operations | CRUD operations, file I/O, static methods |
-| `clsPerson` | Base class for person attributes | Name, email, phone, full name generation |
-| `clsScreen` | Abstract screen template | Standardized header display |
-| `clsMainScreen` | Main menu system | Menu rendering, option handling, navigation |
-| `clsTransactionsScreen` | Transaction menu | Deposit, withdraw, balance operations |
+| :--- | :--- | :--- |
+| **`clsPerson`** | Base class for all persons. | Handles common attributes: Name, Email, Phone. |
+| **`clsBankClient`** | Main client data model. | CRUD operations, static `find()`, `save()`, `Delete()`. |
+| **`clsUser`** | System user data model. | Manages user credentials and permissions. |
+| **`clsCurrency`** | Currency model. | Handles currency codes, names, and exchange rates. |
 
-### Screen Classes
-
-| Class | Purpose | Key Methods |
-|-------|---------|-------------|
-| `clsAddNewClientScreen` | Add new client interface | `showAddNewClientScreen()` |
-| `clsClientListScreen` | Display all clients | `showClientsList()` |
-| `clsDeleteClientScreen` | Delete client interface | `showDeleteClientScreen()` |
-| `clsFindClientScreen` | Search and display client | `showFindClientScreen()` |
-| `clsUpdateClientScreen` | Update client information | `ShowUpdateClientScreen()` |
+### Screen (UI) Classes
+These classes handle all user interaction and inherit from the `clsScreen` base class.
+- **`clsMainScreen`**: The main menu system.
+- **`clsTransactionsScreen`**: The transaction sub-menu.
+- **`clsCurrencyExchangeMainScreen`**: The currency exchange menu.
+- **`clsManageUsersScreen`**: Menu for user management.
+- **`cls*Screen`**: Dedicated screens for each operation (e.g., `clsAddNewClientScreen`, `clsDepositScreen`, `clsFindCurrencyScreen`).
 
 ### Utility Classes
-
 | Class | Purpose | Key Features |
-|-------|---------|--------------|
-| `clsInputValidate` | Input validation and sanitization | Number validation, date validation, string input |
-| `clsDate` | Comprehensive date operations | Date manipulation, calculations, formatting |
-| `clsString` | String manipulation utilities | Split, join, case conversion, trim, replace |
-| `clsUtil` | General utility functions | Random generation, encryption, number to text |
+| :--- | :--- | :--- |
+| **`clsInputValidate`** | Input sanitization. | Number/string validation, range checking. |
+| **`clsDate`** | Comprehensive date operations. | Manipulation, calculations, formatting. |
+| **`clsString`** | String manipulation utilities. | `split()`, `join()`, `trim()`, `replace()`. |
+| **`clsUtil`** | General utility functions. | Random generation, number-to-text conversion, encryption. |
 
 ## Technical Details
-Language and Tools
-Language: C++ (C++17 standard)
 
-Compiler: Compatible with MSVC (Visual Studio), GCC, and Clang
+- **Language & Standard**: C++ (C++17)
+- **Compilers**: Compatible with MSVC (Visual Studio), GCC, and Clang.
+- **File I/O**: Standard library `<fstream>`.
+- **Data Storage**: Plain text files (`.txt`).
+- **Serialization**: Custom delimiter `#//#` for structured data.
+- **Build System**: Visual Studio Solution (`.sln`) included.
 
-File I/O: Standard <fstream> library
+##  Getting Started
 
-Data Storage: Plain text file (Clients.txt)
+### Prerequisites
+- A C++ compiler supporting the C++17 standard (e.g., MSVC, GCC 7+, Clang 5+).
+- (Optional) Visual Studio for the included solution file.
 
-Data Format: Custom delimiter #//# for serialization
+### Installation & Setup
+    **Clone the repository:**
+    ```bash
+    git clone https://github.com/Khalid-Tarazi/bank-system.git
 
-
-## Key Functionalities
-
-### Client Data Management
-// Add new client with unique account number
-clsBankClient newClient = clsBankClient::getAddNewClientObject(accountNumber);
-newClient.save();
-
-// Find client by account number
-clsBankClient client = clsBankClient::find(accountNumber);
-
-// Delete client (soft delete)
-client.Delete();
-
-// Update client information
-client.save(); // Auto-detects update mode
+    **cd bank-system**
